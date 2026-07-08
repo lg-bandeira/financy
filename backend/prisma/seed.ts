@@ -7,14 +7,14 @@ async function main() {
   const email = 'demo@financy.com'
   const existing = await prisma.user.findUnique({ where: { email } })
   if (existing) {
-    console.log('Seed já executado')
+    console.log('Seed already executed')
     return
   }
 
   const password = await bcrypt.hash('demo12345', 10)
   const user = await prisma.user.create({
     data: {
-      name: 'Conta Demo',
+      name: 'Demo Account',
       email,
       password,
     },
@@ -23,8 +23,8 @@ async function main() {
   const categories = await Promise.all([
     prisma.category.create({
       data: {
-        name: 'Alimentação',
-        description: 'Restaurantes, delivery e refeições',
+        name: 'Food',
+        description: 'Restaurants, delivery and meals',
         icon: 'Utensils',
         color: CategoryColor.blue,
         userId: user.id,
@@ -32,8 +32,8 @@ async function main() {
     }),
     prisma.category.create({
       data: {
-        name: 'Salário',
-        description: 'Renda mensal',
+        name: 'Salary',
+        description: 'Monthly income',
         icon: 'Briefcase',
         color: CategoryColor.green,
         userId: user.id,
@@ -41,8 +41,8 @@ async function main() {
     }),
     prisma.category.create({
       data: {
-        name: 'Transporte',
-        description: 'Gasolina e transporte',
+        name: 'Transport',
+        description: 'Gas and transportation',
         icon: 'Car',
         color: CategoryColor.purple,
         userId: user.id,
@@ -54,7 +54,7 @@ async function main() {
   await prisma.transaction.createMany({
     data: [
       {
-        title: 'Pagamento de Salário',
+        title: 'Salary Payment',
         amount: 4250,
         type: TransactionType.INCOME,
         date: new Date(now.getFullYear(), now.getMonth(), 1),
@@ -62,7 +62,7 @@ async function main() {
         categoryId: categories[1].id,
       },
       {
-        title: 'Almoço no restaurante',
+        title: 'Restaurant lunch',
         amount: 45.8,
         type: TransactionType.EXPENSE,
         date: new Date(now.getFullYear(), now.getMonth(), 5),
@@ -70,7 +70,7 @@ async function main() {
         categoryId: categories[0].id,
       },
       {
-        title: 'Uber para o trabalho',
+        title: 'Uber to work',
         amount: 28.5,
         type: TransactionType.EXPENSE,
         date: new Date(now.getFullYear(), now.getMonth(), 7),
@@ -80,7 +80,7 @@ async function main() {
     ],
   })
 
-  console.log('Seed concluído: demo@financy.com / demo12345')
+  console.log('Seed completed: demo@financy.com / demo12345')
 }
 
 main()

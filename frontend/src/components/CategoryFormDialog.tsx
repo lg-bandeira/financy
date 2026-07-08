@@ -28,9 +28,9 @@ import { toast } from "sonner"
 import { z } from "zod"
 
 const categorySchema = z.object({
-  name: z.string().min(1, "Título é obrigatório"),
+  name: z.string().min(1, "Title is required"),
   description: z.string().optional(),
-  icon: z.string().min(1, "Selecione um ícone"),
+  icon: z.string().min(1, "Select an icon"),
   color: z.enum([
     "green",
     "blue",
@@ -116,7 +116,7 @@ export function CategoryFormDialog({
             },
           },
         })
-        toast.success("Categoria atualizada com sucesso!")
+        toast.success("Category updated successfully!")
       } else {
         await createCategory({
           variables: {
@@ -128,13 +128,13 @@ export function CategoryFormDialog({
             },
           },
         })
-        toast.success("Categoria criada com sucesso!")
+        toast.success("Category created successfully!")
       }
 
       onOpenChange(false)
       onSuccess?.()
     } catch {
-      toast.error("Não foi possível salvar a categoria.")
+      toast.error("Could not save the category.")
     }
   }
 
@@ -154,23 +154,23 @@ export function CategoryFormDialog({
       >
         <DialogHeader className="space-y-1.5 px-6 pb-0 pt-6 pr-14">
           <DialogTitle className="text-xl font-bold text-gray-800">
-            {isEditing ? "Editar categoria" : "Nova categoria"}
+            {isEditing ? "Edit category" : "New category"}
           </DialogTitle>
           <DialogDescription className="text-sm text-gray-500">
             {isEditing
-              ? "Atualize os dados da categoria"
-              : "Organize suas transações com categorias"}
+              ? "Update the category details"
+              : "Organize your transactions with categories"}
           </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 px-6 pb-6 pt-5">
           <div className="space-y-2">
             <Label htmlFor="name" className="text-gray-800">
-              Título
+              Title
             </Label>
             <Input
               id="name"
-              placeholder="Ex. Alimentação"
+              placeholder="e.g. Food"
               className="border-gray-200"
               {...register("name")}
             />
@@ -181,19 +181,19 @@ export function CategoryFormDialog({
 
           <div className="space-y-2">
             <Label htmlFor="description" className="text-gray-800">
-              Descrição
+              Description
             </Label>
             <Input
               id="description"
-              placeholder="Descrição da categoria"
+              placeholder="Category description"
               className="border-gray-200"
               {...register("description")}
             />
-            <p className="text-xs text-gray-400">Opcional</p>
+            <p className="text-xs text-gray-400">Optional</p>
           </div>
 
           <div className="space-y-3">
-            <Label className="text-gray-800">Ícone</Label>
+            <Label className="text-gray-800">Icon</Label>
             <div className="grid grid-cols-8 gap-2">
               {CATEGORY_ICON_OPTIONS.map((iconName) => {
                 const Icon = getCategoryIcon(iconName)
@@ -223,7 +223,7 @@ export function CategoryFormDialog({
           </div>
 
           <div className="space-y-3">
-            <Label className="text-gray-800">Cor</Label>
+            <Label className="text-gray-800">Color</Label>
             <div className="flex flex-wrap gap-2">
               {CATEGORY_COLOR_OPTIONS.map((color) => {
                 const selected = selectedColor === color
@@ -253,7 +253,7 @@ export function CategoryFormDialog({
             className="h-11 w-full rounded-lg text-base font-semibold"
             disabled={loading}
           >
-            Salvar
+            Save
           </Button>
         </form>
       </DialogContent>

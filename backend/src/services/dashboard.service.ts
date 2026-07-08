@@ -56,7 +56,7 @@ export class DashboardService {
       })
       .sort((a, b) => {
         if (b.totalAmount !== a.totalAmount) return b.totalAmount - a.totalAmount
-        return a.category.name.localeCompare(b.category.name, 'pt-BR')
+        return a.category.name.localeCompare(b.category.name, 'en')
       })
 
     return {

@@ -60,11 +60,11 @@ export function CategoriesPage() {
     if (!deleteTarget) return
     try {
       await deleteCategory({ variables: { id: deleteTarget.id } })
-      toast.success("Categoria excluída com sucesso!")
+      toast.success("Category deleted successfully!")
       setDeleteTarget(null)
       refetchAll()
     } catch {
-      toast.error("Não foi possível excluir a categoria.")
+      toast.error("Could not delete the category.")
     }
   }
 
@@ -82,20 +82,20 @@ export function CategoriesPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800">Categorias</h1>
+          <h1 className="text-2xl font-bold text-gray-800">Categories</h1>
           <p className="mt-1 text-sm text-gray-500">
-            Organize suas transações por categorias
+            Organize your transactions by category
           </p>
         </div>
         <Button className="shrink-0 gap-2" onClick={openCreate}>
           <Plus className="h-4 w-4" />
-          Nova categoria
+          New category
         </Button>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
         <SummaryCard
-          label="Total de Categorias"
+          label="Total Categories"
           value={String(stats?.totalCategories ?? 0)}
           icon={Tag}
           iconClassName="bg-gray-100"
@@ -103,7 +103,7 @@ export function CategoriesPage() {
           valueFirst
         />
         <SummaryCard
-          label="Total de Transações"
+          label="Total Transactions"
           value={String(stats?.totalTransactions ?? 0)}
           icon={ArrowUpDown}
           iconClassName="bg-cat-purple-light"
@@ -111,7 +111,7 @@ export function CategoriesPage() {
           valueFirst
         />
         <SummaryCard
-          label="Categoria Mais Utilizada"
+          label="Most Used Category"
           value={mostUsed?.name ?? "—"}
           icon={MostUsedIcon}
           iconClassName={
@@ -156,7 +156,7 @@ export function CategoriesPage() {
                         size="icon"
                         className="h-8 w-8 border-gray-200 bg-white hover:bg-gray-50"
                         onClick={() => setDeleteTarget(category)}
-                        title="Excluir"
+                        title="Delete"
                       >
                         <Trash2 className="h-4 w-4 text-danger" />
                       </Button>
@@ -165,7 +165,7 @@ export function CategoriesPage() {
                         size="icon"
                         className="h-8 w-8 border-gray-200 bg-white hover:bg-gray-50"
                         onClick={() => openEdit(category)}
-                        title="Editar"
+                        title="Edit"
                       >
                         <Pencil className="h-4 w-4 text-gray-600" />
                       </Button>
@@ -180,7 +180,7 @@ export function CategoriesPage() {
                   <div className="mt-auto flex items-center justify-between gap-2 pt-4">
                     <CategoryTag name={category.name} color={category.color} />
                     <span className="shrink-0 text-sm text-gray-500">
-                      {count} {count === 1 ? "item" : "itens"}
+                      {count} {count === 1 ? "item" : "items"}
                     </span>
                   </div>
                 </CardContent>
@@ -191,10 +191,10 @@ export function CategoriesPage() {
       ) : (
         <Card className="border-gray-200 shadow-sm">
           <CardContent className="py-12 text-center">
-            <p className="mb-4 text-gray-500">Nenhuma categoria cadastrada.</p>
+            <p className="mb-4 text-gray-500">No categories registered.</p>
             <Button onClick={openCreate} className="gap-2">
               <Plus className="h-4 w-4" />
-              Nova categoria
+              New category
             </Button>
           </CardContent>
         </Card>
@@ -210,18 +210,18 @@ export function CategoriesPage() {
       <Dialog open={Boolean(deleteTarget)} onOpenChange={() => setDeleteTarget(null)}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Excluir categoria</DialogTitle>
+            <DialogTitle>Delete category</DialogTitle>
             <DialogDescription>
-              Tem certeza que deseja excluir &quot;{deleteTarget?.name}&quot;? Esta
-              ação não pode ser desfeita.
+              Are you sure you want to delete &quot;{deleteTarget?.name}&quot;? This
+              action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setDeleteTarget(null)}>
-              Cancelar
+              Cancel
             </Button>
             <Button variant="destructive" onClick={handleDelete} disabled={deleting}>
-              Excluir
+              Delete
             </Button>
           </DialogFooter>
         </DialogContent>

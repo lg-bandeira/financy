@@ -132,11 +132,11 @@ export function TransactionsPage() {
     if (!deleteTarget) return
     try {
       await deleteTransaction({ variables: { id: deleteTarget.id } })
-      toast.success("Transação excluída com sucesso!")
+      toast.success("Transaction deleted successfully!")
       setDeleteTarget(null)
       void refetch()
     } catch {
-      toast.error("Não foi possível excluir a transação.")
+      toast.error("Could not delete the transaction.")
     }
   }
 
@@ -154,14 +154,14 @@ export function TransactionsPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800">Transações</h1>
+          <h1 className="text-2xl font-bold text-gray-800">Transactions</h1>
           <p className="mt-1 text-sm text-gray-500">
-            Gerencie todas as suas transações financeiras
+            Manage all your financial transactions
           </p>
         </div>
         <Button className="shrink-0 gap-2" onClick={openCreate}>
           <Plus className="h-4 w-4" />
-          Nova transação
+          New transaction
         </Button>
       </div>
 
@@ -169,11 +169,11 @@ export function TransactionsPage() {
         <CardContent className="space-y-6 p-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div className="space-y-2">
-              <Label className="text-xs font-medium text-gray-500">Buscar</Label>
+              <Label className="text-xs font-medium text-gray-500">Search</Label>
               <div className="relative">
                 <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                 <Input
-                  placeholder="Buscar por descrição"
+                  placeholder="Search by description"
                   className="pl-9"
                   value={search}
                   onChange={(e) => {
@@ -185,7 +185,7 @@ export function TransactionsPage() {
             </div>
 
             <div className="space-y-2">
-              <Label className="text-xs font-medium text-gray-500">Tipo</Label>
+              <Label className="text-xs font-medium text-gray-500">Type</Label>
               <Select
                 value={typeFilter}
                 onValueChange={(value) => {
@@ -194,18 +194,18 @@ export function TransactionsPage() {
                 }}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Todos" />
+                  <SelectValue placeholder="All" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="ALL">Todos</SelectItem>
-                  <SelectItem value="INCOME">Entrada</SelectItem>
-                  <SelectItem value="EXPENSE">Saída</SelectItem>
+                  <SelectItem value="ALL">All</SelectItem>
+                  <SelectItem value="INCOME">Income</SelectItem>
+                  <SelectItem value="EXPENSE">Expense</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-2">
-              <Label className="text-xs font-medium text-gray-500">Categoria</Label>
+              <Label className="text-xs font-medium text-gray-500">Category</Label>
               <Select
                 value={categoryFilter}
                 onValueChange={(value) => {
@@ -214,10 +214,10 @@ export function TransactionsPage() {
                 }}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Todas" />
+                  <SelectValue placeholder="All" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="ALL">Todas</SelectItem>
+                  <SelectItem value="ALL">All</SelectItem>
                   {categories.map((category) => (
                     <SelectItem key={category.id} value={category.id}>
                       {category.name}
@@ -228,7 +228,7 @@ export function TransactionsPage() {
             </div>
 
             <div className="space-y-2">
-              <Label className="text-xs font-medium text-gray-500">Período</Label>
+              <Label className="text-xs font-medium text-gray-500">Period</Label>
               <Select
                 value={`${month}-${year}`}
                 onValueChange={(value) => {
@@ -239,7 +239,7 @@ export function TransactionsPage() {
                 }}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Período" />
+                  <SelectValue placeholder="Period" />
                 </SelectTrigger>
                 <SelectContent>
                   {periodOptions.map((option) => (
@@ -259,19 +259,19 @@ export function TransactionsPage() {
             <table className="w-full min-w-[800px] text-sm">
               <thead>
                 <tr className="border-b border-gray-200 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
-                  <th className="pb-3 pr-4">Descrição</th>
-                  <th className="pb-3 pr-4">Data</th>
-                  <th className="pb-3 pr-4">Categoria</th>
-                  <th className="pb-3 pr-4">Tipo</th>
-                  <th className="pb-3 pr-4 text-right">Valor</th>
-                  <th className="pb-3 text-center">Ações</th>
+                  <th className="pb-3 pr-4">Description</th>
+                  <th className="pb-3 pr-4">Date</th>
+                  <th className="pb-3 pr-4">Category</th>
+                  <th className="pb-3 pr-4">Type</th>
+                  <th className="pb-3 pr-4 text-right">Amount</th>
+                  <th className="pb-3 text-center">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {loading ? (
                   <tr>
                     <td colSpan={6} className="py-12 text-center text-gray-500">
-                      Carregando transações...
+                      Loading transactions...
                     </td>
                   </tr>
                 ) : transactions?.items?.length ? (
@@ -335,7 +335,7 @@ export function TransactionsPage() {
                             ) : (
                               <CircleArrowDown className="h-4 w-4" />
                             )}
-                            {isIncome ? "Entrada" : "Saída"}
+                            {isIncome ? "Income" : "Expense"}
                           </span>
                         </td>
                         <td
@@ -353,7 +353,7 @@ export function TransactionsPage() {
                               size="icon"
                               className="h-8 w-8 border-gray-200 bg-white hover:bg-gray-50"
                               onClick={() => setDeleteTarget(transaction)}
-                              title="Excluir"
+                              title="Delete"
                             >
                               <Trash2 className="h-4 w-4 text-danger" />
                             </Button>
@@ -362,7 +362,7 @@ export function TransactionsPage() {
                               size="icon"
                               className="h-8 w-8 border-gray-200 bg-white hover:bg-gray-50"
                               onClick={() => openEdit(transaction)}
-                              title="Editar"
+                              title="Edit"
                             >
                               <Pencil className="h-4 w-4 text-gray-600" />
                             </Button>
@@ -374,7 +374,7 @@ export function TransactionsPage() {
                 ) : (
                   <tr>
                     <td colSpan={6} className="py-12 text-center text-gray-500">
-                      Nenhuma transação encontrada.
+                      No transactions found.
                     </td>
                   </tr>
                 )}
@@ -384,7 +384,7 @@ export function TransactionsPage() {
 
           <div className="flex flex-col gap-4 border-t border-gray-100 pt-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-gray-500">
-              {start} a {end} | {total} resultados
+              {start} to {end} | {total} results
             </p>
             <div className="flex items-center gap-1">
               <Button
@@ -434,18 +434,18 @@ export function TransactionsPage() {
       <Dialog open={Boolean(deleteTarget)} onOpenChange={() => setDeleteTarget(null)}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Excluir transação</DialogTitle>
+            <DialogTitle>Delete transaction</DialogTitle>
             <DialogDescription>
-              Tem certeza que deseja excluir &quot;{deleteTarget?.title}&quot;? Esta
-              ação não pode ser desfeita.
+              Are you sure you want to delete &quot;{deleteTarget?.title}&quot;? This
+              action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setDeleteTarget(null)}>
-              Cancelar
+              Cancel
             </Button>
             <Button variant="destructive" onClick={handleDelete} disabled={deleting}>
-              Excluir
+              Delete
             </Button>
           </DialogFooter>
         </DialogContent>

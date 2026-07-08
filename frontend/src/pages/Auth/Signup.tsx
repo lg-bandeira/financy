@@ -13,9 +13,9 @@ import { Label } from "@/components/ui/label"
 import { useAuthStore } from "@/stores/auth"
 
 const signupSchema = z.object({
-  name: z.string().min(1, "Nome é obrigatório"),
-  email: z.string().email("E-mail inválido"),
-  password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres"),
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
 })
 
 type SignupFormValues = z.infer<typeof signupSchema>
@@ -38,11 +38,11 @@ export function Signup() {
     try {
       const success = await signup(values)
       if (success) {
-        toast.success("Conta criada com sucesso!")
+        toast.success("Account created successfully!")
         navigate("/")
       }
     } catch {
-      toast.error("Falha ao criar a conta. Tente novamente.")
+      toast.error("Could not create account. Please try again.")
     }
   }
 
@@ -52,20 +52,20 @@ export function Signup() {
 
       <Card className="w-full max-w-md rounded-xl">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">Criar conta</CardTitle>
+          <CardTitle className="text-2xl font-bold">Create account</CardTitle>
           <CardDescription>
-            Comece a controlar suas finanças ainda hoje
+            Start managing your finances today
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Nome completo</Label>
+              <Label htmlFor="name">Full name</Label>
               <div className="relative">
                 <User className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                 <Input
                   id="name"
-                  placeholder="Seu nome completo"
+                  placeholder="Your full name"
                   className="pl-9"
                   {...register("name")}
                 />
@@ -76,13 +76,13 @@ export function Signup() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">E-mail</Label>
+              <Label htmlFor="email">Email</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                 <Input
                   id="email"
                   type="email"
-                  placeholder="mail@exemplo.com"
+                  placeholder="mail@example.com"
                   className="pl-9"
                   {...register("email")}
                 />
@@ -93,13 +93,13 @@ export function Signup() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Senha</Label>
+              <Label htmlFor="password">Password</Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Digite sua senha"
+                  placeholder="Enter your password"
                   className="pl-9 pr-9"
                   {...register("password")}
                 />
@@ -115,7 +115,7 @@ export function Signup() {
                   )}
                 </button>
               </div>
-              <p className="text-xs text-gray-500">Mínimo de 8 caracteres</p>
+              <p className="text-xs text-gray-500">Minimum 8 characters</p>
               {errors.password && (
                 <p className="text-xs text-danger">{errors.password.message}</p>
               )}
@@ -123,21 +123,21 @@ export function Signup() {
 
             <Button type="submit" className="w-full gap-2" disabled={isSubmitting}>
               <UserPlus className="h-4 w-4" />
-              Cadastrar
+              Sign up
             </Button>
           </form>
 
           <div className="my-6 flex items-center gap-4">
             <div className="h-px flex-1 bg-gray-200" />
-            <span className="text-sm text-gray-500">ou</span>
+            <span className="text-sm text-gray-500">or</span>
             <div className="h-px flex-1 bg-gray-200" />
           </div>
 
           <p className="mb-3 text-center text-sm text-gray-500">
-            Já tem uma conta?
+            Already have an account?
           </p>
           <Button variant="outline" className="w-full" asChild>
-            <Link to="/login">Fazer login</Link>
+            <Link to="/login">Sign in</Link>
           </Button>
         </CardContent>
       </Card>

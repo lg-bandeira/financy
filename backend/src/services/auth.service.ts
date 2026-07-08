@@ -9,20 +9,20 @@ export class AuthService {
     const existingUser = await prismaClient.user.findUnique({
       where: { email: data.email },
     })
-    if (!existingUser) throw new Error('Usuário não cadastrado!')
+    if (!existingUser) throw new Error('User not registered!')
     const compare = await comparePassword(data.password, existingUser.password)
-    if (!compare) throw new Error('Senha inválida!')
+    if (!compare) throw new Error('Invalid password!')
     return this.generateTokens(existingUser)
   }
 
   async register(data: RegisterInput) {
     if (data.password.length < 8) {
-      throw new Error('A senha deve ter no mínimo 8 caracteres')
+      throw new Error('Password must be at least 8 characters')
     }
     const existingUser = await prismaClient.user.findUnique({
       where: { email: data.email },
     })
-    if (existingUser) throw new Error('E-mail já cadastrado!')
+    if (existingUser) throw new Error('Email already registered!')
 
     const hash = await hashPassword(data.password)
     const user = await prismaClient.user.create({

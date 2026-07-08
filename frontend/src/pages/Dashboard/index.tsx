@@ -43,28 +43,28 @@ export function DashboardPage() {
   const summary = data?.getDashboardSummary
 
   if (loading) {
-    return <p className="text-gray-500">Carregando dashboard...</p>
+    return <p className="text-gray-500">Loading dashboard...</p>
   }
 
   return (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-3">
         <SummaryCard
-          label="Saldo Total"
+          label="Total Balance"
           value={formatCurrency(summary?.balance ?? 0)}
           icon={Wallet}
           iconClassName="bg-cat-purple-light"
           iconColorClassName="text-cat-purple-base"
         />
         <SummaryCard
-          label="Receitas do Mês"
+          label="Monthly Income"
           value={formatCurrency(summary?.monthlyIncome ?? 0)}
           icon={CircleArrowUp}
           iconClassName="bg-cat-green-light"
           iconColorClassName="text-success"
         />
         <SummaryCard
-          label="Despesas do Mês"
+          label="Monthly Expenses"
           value={formatCurrency(summary?.monthlyExpenses ?? 0)}
           icon={CircleArrowDown}
           iconClassName="bg-cat-red-light"
@@ -76,13 +76,13 @@ export function DashboardPage() {
         <Card className="border-gray-200 shadow-sm lg:col-span-2">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 border-b border-gray-100 px-6 pb-4 pt-6">
             <CardTitle className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-              Transações Recentes
+              Recent Transactions
             </CardTitle>
             <Link
               to="/transactions"
               className="flex items-center gap-0.5 text-sm font-medium text-brand-base hover:underline"
             >
-              Ver todas
+              View all
               <ChevronRight className="h-4 w-4" />
             </Link>
           </CardHeader>
@@ -153,7 +153,7 @@ export function DashboardPage() {
               </div>
             ) : (
               <p className="py-8 text-center text-sm text-gray-500">
-                Nenhuma transação registrada ainda.
+                No transactions recorded yet.
               </p>
             )}
 
@@ -164,7 +164,7 @@ export function DashboardPage() {
                 onClick={() => setDialogOpen(true)}
               >
                 <Plus className="h-4 w-4" />
-                Nova transação
+                New transaction
               </Button>
             </div>
           </CardContent>
@@ -173,13 +173,13 @@ export function DashboardPage() {
         <Card className="border-gray-200 shadow-sm lg:col-span-1">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 border-b border-gray-100 px-6 pb-4 pt-6">
             <CardTitle className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-              Categorias
+              Categories
             </CardTitle>
             <Link
               to="/categories"
               className="flex items-center gap-0.5 text-sm font-medium text-brand-base hover:underline"
             >
-              Gerenciar
+              Manage
               <ChevronRight className="h-4 w-4" />
             </Link>
           </CardHeader>
@@ -197,7 +197,7 @@ export function DashboardPage() {
                         color={item.category.color}
                       />
                       <span className="whitespace-nowrap text-sm text-gray-500">
-                        {item.itemCount} {item.itemCount === 1 ? "item" : "itens"}
+                        {item.itemCount} {item.itemCount === 1 ? "item" : "items"}
                       </span>
                     </div>
                     <p className="shrink-0 text-sm font-semibold text-gray-800">
@@ -208,7 +208,7 @@ export function DashboardPage() {
               </div>
             ) : (
               <p className="py-4 text-center text-sm text-gray-500">
-                Nenhuma categoria cadastrada.
+                No categories registered.
               </p>
             )}
           </CardContent>

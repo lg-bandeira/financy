@@ -37,11 +37,11 @@ import { cn } from "@/lib/utils"
 import type { Category, Transaction, TransactionType } from "@/types"
 
 const transactionSchema = z.object({
-  title: z.string().min(1, "Descrição é obrigatória"),
-  amount: z.number().positive("Valor deve ser maior que zero"),
+  title: z.string().min(1, "Description is required"),
+  amount: z.number().positive("Amount must be greater than zero"),
   type: z.enum(["INCOME", "EXPENSE"]),
-  date: z.string().min(1, "Data é obrigatória"),
-  categoryId: z.string().min(1, "Selecione uma categoria"),
+  date: z.string().min(1, "Date is required"),
+  categoryId: z.string().min(1, "Select a category"),
 })
 
 type TransactionFormValues = z.infer<typeof transactionSchema>
@@ -130,7 +130,7 @@ export function TransactionFormDialog({
             },
           },
         })
-        toast.success("Transação atualizada com sucesso!")
+        toast.success("Transaction updated successfully!")
       } else {
         await createTransaction({
           variables: {
@@ -143,13 +143,13 @@ export function TransactionFormDialog({
             },
           },
         })
-        toast.success("Transação criada com sucesso!")
+        toast.success("Transaction created successfully!")
       }
 
       onOpenChange(false)
       onSuccess?.()
     } catch {
-      toast.error("Não foi possível salvar a transação.")
+      toast.error("Could not save the transaction.")
     }
   }
 
@@ -161,12 +161,12 @@ export function TransactionFormDialog({
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>
-            {isEditing ? "Editar transação" : "Nova transação"}
+            {isEditing ? "Edit transaction" : "New transaction"}
           </DialogTitle>
           <DialogDescription>
             {isEditing
-              ? "Atualize os dados da transação"
-              : "Registre sua despesa ou receita"}
+              ? "Update the transaction details"
+              : "Record your expense or income"}
           </DialogDescription>
         </DialogHeader>
 
@@ -189,17 +189,17 @@ export function TransactionFormDialog({
                   )}
                 >
                   <Icon className="h-4 w-4" />
-                  {isExpense ? "Despesa" : "Receita"}
+                  {isExpense ? "Expense" : "Income"}
                 </button>
               )
             })}
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="title">Descrição</Label>
+            <Label htmlFor="title">Description</Label>
             <Input
               id="title"
-              placeholder="Ex. Almoço no restaurante"
+              placeholder="e.g. Restaurant lunch"
               {...register("title")}
             />
             {errors.title && (
@@ -209,14 +209,14 @@ export function TransactionFormDialog({
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-2">
-              <Label htmlFor="date">Data</Label>
+              <Label htmlFor="date">Date</Label>
               <Input id="date" type="date" {...register("date")} />
               {errors.date && (
                 <p className="text-xs text-danger">{errors.date.message}</p>
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="amount">Valor</Label>
+              <Label htmlFor="amount">Amount</Label>
               <Input
                 id="amount"
                 value={formatCurrencyInput(amount || 0)}
@@ -233,7 +233,7 @@ export function TransactionFormDialog({
           </div>
 
           <div className="space-y-2">
-            <Label>Categoria</Label>
+            <Label>Category</Label>
             <Select
               value={categoryId}
               onValueChange={(value) =>
@@ -241,7 +241,7 @@ export function TransactionFormDialog({
               }
             >
               <SelectTrigger>
-                <SelectValue placeholder="Selecione" />
+                <SelectValue placeholder="Select" />
               </SelectTrigger>
               <SelectContent>
                 {categories.map((category) => (
@@ -258,7 +258,7 @@ export function TransactionFormDialog({
 
           <DialogFooter>
             <Button type="submit" className="w-full" disabled={loading}>
-              Salvar
+              Save
             </Button>
           </DialogFooter>
         </form>

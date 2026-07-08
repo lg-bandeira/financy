@@ -70,7 +70,7 @@ export class TransactionService {
       where: { id, userId },
       include: { category: true },
     })
-    if (!transaction) throw new Error('Transação não encontrada')
+    if (!transaction) throw new Error('Transaction not found')
     return this.mapTransaction(transaction)
   }
 
@@ -118,13 +118,13 @@ export class TransactionService {
   }
 
   private validateAmount(amount: number) {
-    if (amount <= 0) throw new Error('Valor deve ser maior que zero')
+    if (amount <= 0) throw new Error('Amount must be greater than zero')
   }
 
   private async validateCategory(userId: string, categoryId: string) {
     const category = await prismaClient.category.findFirst({
       where: { id: categoryId, userId },
     })
-    if (!category) throw new Error('Categoria não encontrada')
+    if (!category) throw new Error('Category not found')
   }
 }

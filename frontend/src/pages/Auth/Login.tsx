@@ -14,8 +14,8 @@ import { Label } from "@/components/ui/label"
 import { useAuthStore } from "@/stores/auth"
 
 const loginSchema = z.object({
-  email: z.string().email("E-mail inválido"),
-  password: z.string().min(1, "Senha é obrigatória"),
+  email: z.string().email("Invalid email"),
+  password: z.string().min(1, "Password is required"),
   remember: z.boolean().optional(),
 })
 
@@ -49,11 +49,11 @@ export function Login() {
         values.remember === true
       )
       if (success) {
-        toast.success("Login realizado com sucesso!")
+        toast.success("Login successful!")
         navigate("/")
       }
     } catch {
-      toast.error("Falha ao realizar o login. Verifique suas credenciais.")
+      toast.error("Login failed. Please check your credentials.")
     }
   }
 
@@ -63,19 +63,19 @@ export function Login() {
 
       <Card className="w-full max-w-md rounded-xl">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">Fazer login</CardTitle>
-          <CardDescription>Entre na sua conta para continuar</CardDescription>
+          <CardTitle className="text-2xl font-bold">Sign in</CardTitle>
+          <CardDescription>Sign in to your account to continue</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">E-mail</Label>
+              <Label htmlFor="email">Email</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                 <Input
                   id="email"
                   type="email"
-                  placeholder="mail@exemplo.com"
+                  placeholder="mail@example.com"
                   className="pl-9"
                   {...register("email")}
                 />
@@ -86,13 +86,13 @@ export function Login() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Senha</Label>
+              <Label htmlFor="password">Password</Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Digite sua senha"
+                  placeholder="Enter your password"
                   className="pl-9 pr-9"
                   {...register("password")}
                 />
@@ -121,27 +121,27 @@ export function Login() {
                     setValue("remember", checked === true)
                   }
                 />
-                Lembrar-me
+                Remember me
               </label>
             </div>
 
             <Button type="submit" className="w-full gap-2" disabled={isSubmitting}>
               <LogIn className="h-4 w-4" />
-              Entrar
+              Sign in
             </Button>
           </form>
 
           <div className="my-6 flex items-center gap-4">
             <div className="h-px flex-1 bg-gray-200" />
-            <span className="text-sm text-gray-500">ou</span>
+            <span className="text-sm text-gray-500">or</span>
             <div className="h-px flex-1 bg-gray-200" />
           </div>
 
           <p className="mb-3 text-center text-sm text-gray-500">
-            Ainda não tem uma conta?
+            Don&apos;t have an account yet?
           </p>
           <Button variant="outline" className="w-full" asChild>
-            <Link to="/signup">Criar conta</Link>
+            <Link to="/signup">Create account</Link>
           </Button>
         </CardContent>
       </Card>

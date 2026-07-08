@@ -44,7 +44,7 @@ export class CategoryService {
     const existing = await prismaClient.category.findUnique({
       where: { userId_name: { userId, name: data.name } },
     })
-    if (existing) throw new Error('Categoria já existe!')
+    if (existing) throw new Error('Category already exists!')
 
     return prismaClient.category.create({
       data: { ...data, userId },
@@ -57,7 +57,7 @@ export class CategoryService {
       const duplicate = await prismaClient.category.findFirst({
         where: { userId, name: data.name, NOT: { id } },
       })
-      if (duplicate) throw new Error('Categoria já existe!')
+      if (duplicate) throw new Error('Category already exists!')
     }
     return prismaClient.category.update({
       where: { id },
@@ -75,7 +75,7 @@ export class CategoryService {
     const count = await prismaClient.transaction.count({
       where: { categoryId: id, userId },
     })
-    if (count > 0) throw new Error('Categoria em uso por transações')
+    if (count > 0) throw new Error('Category is in use by transactions')
 
     await prismaClient.category.delete({ where: { id } })
     return true
@@ -85,7 +85,7 @@ export class CategoryService {
     const category = await prismaClient.category.findFirst({
       where: { id, userId },
     })
-    if (!category) throw new Error('Categoria não encontrada')
+    if (!category) throw new Error('Category not found')
     return category
   }
 }

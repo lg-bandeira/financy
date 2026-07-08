@@ -6,11 +6,11 @@ import { prismaClient } from '../../../prisma/prisma'
 export const GqlUser = () => {
   return createParameterDecorator(
     async ({ context }: ResolverData<GraphqlContext>): Promise<UserModel> => {
-      if (!context?.user) throw new Error('Usuário não autenticado!')
+      if (!context?.user) throw new Error('User not authenticated!')
       const user = await prismaClient.user.findUnique({
         where: { id: context.user },
       })
-      if (!user) throw new Error('Usuário não encontrado')
+      if (!user) throw new Error('User not found')
       return user
     }
   )

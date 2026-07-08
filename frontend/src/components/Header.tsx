@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils"
 
 const navItems = [
   { to: "/", label: "Dashboard" },
-  { to: "/transactions", label: "Transações" },
-  { to: "/categories", label: "Categorias" },
+  { to: "/transactions", label: "Transactions" },
+  { to: "/categories", label: "Categories" },
 ]
 
 export function Header() {
@@ -48,7 +48,7 @@ export function Header() {
           <Link
             to="/profile"
             className="rounded-full hover:opacity-80"
-            title="Perfil"
+            title="Profile"
           >
             <Avatar className="h-10 w-10">
               <AvatarFallback className="bg-gray-200 text-sm font-medium text-gray-700">

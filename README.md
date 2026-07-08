@@ -1,20 +1,20 @@
 # Financy
 
-Aplicação full-stack de gerenciamento de finanças pessoais.
+Full-stack personal finance management application.
 
 ## Stack
 
-| Camada | Tecnologias |
-|--------|-------------|
+| Layer | Technologies |
+|-------|--------------|
 | Backend | TypeScript, Express, Apollo Server, Type-GraphQL, Prisma, SQLite |
 | Frontend | React, Vite, Apollo Client, TailwindCSS, Shadcn/ui, Zustand |
 
-## Estrutura
+## Structure
 
 ```text
-backend/    # API GraphQL (porta 4000)
-frontend/   # SPA React (porta 5173)
-specs/      # Especificação e plano de implementação
+backend/    # GraphQL API (port 4000)
+frontend/   # React SPA (port 5173)
+specs/      # Specification and implementation plan
 .specify/   # Constitution, design system (Figma)
 ```
 
@@ -25,10 +25,10 @@ specs/      # Especificação e plano de implementação
 ```bash
 cd backend
 cp .env.example .env
-# Defina JWT_SECRET no .env
+# Set JWT_SECRET in .env
 npm install
 npx prisma migrate dev
-npm run seed   # opcional: demo@financy.com / demo12345
+npm run seed   # optional: creates demo account (see below)
 npm run dev
 ```
 
@@ -41,12 +41,23 @@ npm install
 npm run dev
 ```
 
-Acesse `http://localhost:5173`.
+Open `http://localhost:5173`.
 
-## Documentação
+## Demo account
+
+After running `npm run seed` in the backend, you can sign in with:
+
+| Field | Value |
+|-------|-------|
+| Email | `demo@financy.com` |
+| Password | `demo12345` |
+
+The seed creates a demo user with sample categories (Food, Salary, Transport) and transactions so you can explore the dashboard, transactions, and categories pages without manual setup.
+
+## Documentation
 
 - Constitution: `.specify/memory/constitution.md`
 - Design (Figma): `.specify/design/`
 - Spec: `specs/001-financy-app/spec.md`
-- Plano: `specs/001-financy-app/plan.md`
-- Validação: `specs/001-financy-app/quickstart.md`
+- Plan: `specs/001-financy-app/plan.md`
+- Validation: `specs/001-financy-app/quickstart.md`

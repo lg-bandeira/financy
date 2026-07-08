@@ -18,7 +18,7 @@ import { useAuthStore } from "@/stores/auth"
 import type { User as UserType } from "@/types"
 
 const profileSchema = z.object({
-  name: z.string().min(1, "Nome é obrigatório"),
+  name: z.string().min(1, "Name is required"),
 })
 
 type ProfileFormValues = z.infer<typeof profileSchema>
@@ -57,10 +57,10 @@ export function ProfilePage() {
       const updated = result.data as { updateProfile?: UserType } | undefined
       if (updated?.updateProfile) {
         setUser(updated.updateProfile)
-        toast.success("Perfil atualizado com sucesso!")
+        toast.success("Profile updated successfully!")
       }
     } catch {
-      toast.error("Não foi possível atualizar o perfil.")
+      toast.error("Could not update profile.")
     }
   }
 
@@ -87,7 +87,7 @@ export function ProfilePage() {
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Nome completo</Label>
+              <Label htmlFor="name">Full name</Label>
               <div className="relative">
                 <User className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                 <Input id="name" className="pl-9" {...register("name")} />
@@ -98,7 +98,7 @@ export function ProfilePage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">E-mail</Label>
+              <Label htmlFor="email">Email</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                 <Input
@@ -110,7 +110,7 @@ export function ProfilePage() {
                 />
               </div>
               <p className="text-xs text-gray-500">
-                O e-mail não pode ser alterado
+                Email cannot be changed
               </p>
             </div>
 
@@ -119,7 +119,7 @@ export function ProfilePage() {
               className="w-full"
               disabled={loading || isSubmitting}
             >
-              Salvar alterações
+              Save changes
             </Button>
           </form>
 
@@ -129,7 +129,7 @@ export function ProfilePage() {
             onClick={handleLogout}
           >
             <LogOut className="h-4 w-4" />
-            Sair da conta
+            Sign out
           </Button>
         </CardContent>
       </Card>

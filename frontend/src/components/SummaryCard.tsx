@@ -9,7 +9,7 @@ interface SummaryCardProps {
   iconClassName?: string
   iconColorClassName?: string
   valueClassName?: string
-  /** Figma categories: valor grande acima do label */
+  /** Figma categories: large value above label */
   valueFirst?: boolean
 }
 

@@ -137,7 +137,7 @@ export function getCategoryColorClasses(color: CategoryColor) {
 }
 
 export function formatCurrency(value: number): string {
-  return new Intl.NumberFormat("pt-BR", {
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "BRL",
   }).format(value)
@@ -145,7 +145,7 @@ export function formatCurrency(value: number): string {
 
 export function formatDate(date: string | Date): string {
   const d = typeof date === "string" ? new Date(date) : date
-  return d.toLocaleDateString("pt-BR", {
+  return d.toLocaleDateString("en-US", {
     day: "2-digit",
     month: "2-digit",
     year: "2-digit",
@@ -176,25 +176,25 @@ export function parseCurrencyInput(value: string): number {
 }
 
 export function formatCurrencyInput(value: number): string {
-  return new Intl.NumberFormat("pt-BR", {
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "BRL",
   }).format(value)
 }
 
 export const MONTH_NAMES = [
-  "Janeiro",
-  "Fevereiro",
-  "Março",
-  "Abril",
-  "Maio",
-  "Junho",
-  "Julho",
-  "Agosto",
-  "Setembro",
-  "Outubro",
-  "Novembro",
-  "Dezembro",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ]
 
 export function getMonthYearLabel(month: number, year: number): string {
