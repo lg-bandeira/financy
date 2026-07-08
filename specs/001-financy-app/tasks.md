@@ -29,18 +29,18 @@ description: "Task list for Financy personal finance application"
 
 **Purpose**: Initialize monorepo structure and tooling for both applications
 
-- [ ] T001 Create `backend/` directory with `package.json` (Express 5, Apollo Server 5, Type-GraphQL, Prisma, jsonwebtoken, bcryptjs, tsx)
-- [ ] T002 [P] Create `backend/tsconfig.json` with ESM, ES2023, experimentalDecorators, emitDecoratorMetadata
-- [ ] T003 [P] Create `backend/.env.example` with `JWT_SECRET=` and `DATABASE_URL="file:./dev.db"`
-- [ ] T004 [P] Create `backend/.gitignore` excluding `node_modules`, `.env`, `prisma/dev.db`
-- [ ] T005 Create `frontend/` directory with `package.json` (React 19, Vite 7, Apollo Client, React Router, TailwindCSS, Zustand, RHF, Zod, lucide-react)
-- [ ] T006 [P] Create `frontend/tsconfig.json` and `frontend/vite.config.ts` with `@/` path alias
-- [ ] T007 [P] Create `frontend/.env.example` with `VITE_BACKEND_URL=http://localhost:4000/graphql`
-- [ ] T008 [P] Create `frontend/.gitignore` excluding `node_modules`, `.env`, `dist`
-- [ ] T009 Initialize Prisma in `backend/prisma/schema.prisma` with SQLite datasource and client generator
-- [ ] T010 [P] Configure TailwindCSS in `frontend/tailwind.config.js` with Financy design tokens from `.specify/design/style-guide.md` (brand, gray, feedback, category colors)
-- [ ] T011 [P] Initialize Shadcn/ui in `frontend/` and add base components to `frontend/src/components/ui/` (Button, Input, Label, Dialog, Select, Checkbox, Avatar, Card)
-- [ ] T012 [P] Add Inter font and global styles in `frontend/src/index.css` per style guide
+- [x] T001 Create `backend/` directory with `package.json` (Express 5, Apollo Server 5, Type-GraphQL, Prisma, jsonwebtoken, bcryptjs, tsx)
+- [x] T002 [P] Create `backend/tsconfig.json` with ESM, ES2023, experimentalDecorators, emitDecoratorMetadata
+- [x] T003 [P] Create `backend/.env.example` with `JWT_SECRET=` and `DATABASE_URL="file:./dev.db"`
+- [x] T004 [P] Create `backend/.gitignore` excluding `node_modules`, `.env`, `prisma/dev.db`
+- [x] T005 Create `frontend/` directory with `package.json` (React 19, Vite 7, Apollo Client, React Router, TailwindCSS, Zustand, RHF, Zod, lucide-react)
+- [x] T006 [P] Create `frontend/tsconfig.json` and `frontend/vite.config.ts` with `@/` path alias
+- [x] T007 [P] Create `frontend/.env.example` with `VITE_BACKEND_URL=http://localhost:4000/graphql`
+- [x] T008 [P] Create `frontend/.gitignore` excluding `node_modules`, `.env`, `dist`
+- [x] T009 Initialize Prisma in `backend/prisma/schema.prisma` with SQLite datasource and client generator
+- [x] T010 [P] Configure TailwindCSS in `frontend/tailwind.config.js` with Financy design tokens from `.specify/design/style-guide.md` (brand, gray, feedback, category colors)
+- [x] T011 [P] Initialize Shadcn/ui in `frontend/` and add base components to `frontend/src/components/ui/` (Button, Input, Label, Dialog, Select, Checkbox, Avatar, Card)
+- [x] T012 [P] Add Inter font and global styles in `frontend/src/index.css` per style guide
 
 **Checkpoint**: Both apps install and start without errors (`npm install` in each)
 
@@ -52,29 +52,29 @@ description: "Task list for Financy personal finance application"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T013 Add User model to `backend/prisma/schema.prisma` and run `prisma migrate dev --name init_user`
-- [ ] T014 [P] Create Prisma singleton in `backend/prisma/prisma.ts`
-- [ ] T015 [P] Implement `backend/src/utils/hash.ts` (bcryptjs hash and compare)
-- [ ] T016 [P] Implement `backend/src/utils/jwt.ts` (signJwt, verifyJwt with JWT_SECRET)
-- [ ] T017 [P] Create `backend/src/models/user.model.ts` Type-GraphQL ObjectType (exclude password from responses)
-- [ ] T018 [P] Create `backend/src/dtos/input/auth.input.ts` (RegisterInput, LoginInput)
-- [ ] T019 [P] Create `backend/src/dtos/output/auth.output.ts` (AuthPayload with token, refreshToken, user)
-- [ ] T020 Implement `backend/src/services/auth.service.ts` (register, login, generateTokens)
-- [ ] T021 Implement `backend/src/graphql/context/index.ts` (extract Bearer token, set context.user)
-- [ ] T022 [P] Implement `backend/src/middlewares/auth.middleware.ts` (IsAuth guard)
-- [ ] T023 [P] Implement `backend/src/graphql/decorators/user.decorator.ts` (@GqlUser parameter decorator)
-- [ ] T024 Implement `backend/src/resolvers/auth.resolver.ts` (login, register mutations — public)
-- [ ] T025 Implement `backend/src/index.ts` (Express, CORS for localhost:5173, Apollo Server, buildSchema, emit schema.graphql)
-- [ ] T026 [P] Create `frontend/src/types/index.ts` with User, LoginInput, RegisterInput types
-- [ ] T027 [P] Implement `frontend/src/lib/graphql/apollo.ts` (HttpLink with VITE_BACKEND_URL, auth link with token)
-- [ ] T028 [P] Create `frontend/src/lib/graphql/mutations/Login.ts` and `frontend/src/lib/graphql/mutations/Register.ts`
-- [ ] T029 Implement `frontend/src/stores/auth.ts` (Zustand persist: login, signup, logout, clear Apollo cache)
-- [ ] T030 [P] Add logo assets to `frontend/src/assets/` per style guide
-- [ ] T031 [P] Implement `frontend/src/components/Layout.tsx` and `frontend/src/components/Header.tsx` (logo, nav links, avatar placeholder)
-- [ ] T032 Implement `frontend/src/App.tsx` with React Router routes and ProtectedRoute/PublicRoute guards
-- [ ] T033 [P] Implement `frontend/src/pages/Auth/Login.tsx` per `.specify/design/pages/login.md`
-- [ ] T034 [P] Implement `frontend/src/pages/Auth/Signup.tsx` per `.specify/design/pages/signup.md`
-- [ ] T035 Wire `frontend/src/main.tsx` with ApolloProvider, BrowserRouter, and global CSS
+- [x] T013 Add User model to `backend/prisma/schema.prisma` and run `prisma migrate dev --name init_user`
+- [x] T014 [P] Create Prisma singleton in `backend/prisma/prisma.ts`
+- [x] T015 [P] Implement `backend/src/utils/hash.ts` (bcryptjs hash and compare)
+- [x] T016 [P] Implement `backend/src/utils/jwt.ts` (signJwt, verifyJwt with JWT_SECRET)
+- [x] T017 [P] Create `backend/src/models/user.model.ts` Type-GraphQL ObjectType (exclude password from responses)
+- [x] T018 [P] Create `backend/src/dtos/input/auth.input.ts` (RegisterInput, LoginInput)
+- [x] T019 [P] Create `backend/src/dtos/output/auth.output.ts` (AuthPayload with token, refreshToken, user)
+- [x] T020 Implement `backend/src/services/auth.service.ts` (register, login, generateTokens)
+- [x] T021 Implement `backend/src/graphql/context/index.ts` (extract Bearer token, set context.user)
+- [x] T022 [P] Implement `backend/src/middlewares/auth.middleware.ts` (IsAuth guard)
+- [x] T023 [P] Implement `backend/src/graphql/decorators/user.decorator.ts` (@GqlUser parameter decorator)
+- [x] T024 Implement `backend/src/resolvers/auth.resolver.ts` (login, register mutations — public)
+- [x] T025 Implement `backend/src/index.ts` (Express, CORS for localhost:5173, Apollo Server, buildSchema, emit schema.graphql)
+- [x] T026 [P] Create `frontend/src/types/index.ts` with User, LoginInput, RegisterInput types
+- [x] T027 [P] Implement `frontend/src/lib/graphql/apollo.ts` (HttpLink with VITE_BACKEND_URL, auth link with token)
+- [x] T028 [P] Create `frontend/src/lib/graphql/mutations/Login.ts` and `frontend/src/lib/graphql/mutations/Register.ts`
+- [x] T029 Implement `frontend/src/stores/auth.ts` (Zustand persist: login, signup, logout, clear Apollo cache)
+- [x] T030 [P] Add logo assets to `frontend/src/assets/` per style guide
+- [x] T031 [P] Implement `frontend/src/components/Layout.tsx` and `frontend/src/components/Header.tsx` (logo, nav links, avatar placeholder)
+- [x] T032 Implement `frontend/src/App.tsx` with React Router routes and ProtectedRoute/PublicRoute guards
+- [x] T033 [P] Implement `frontend/src/pages/Auth/Login.tsx` per `.specify/design/pages/login.md`
+- [x] T034 [P] Implement `frontend/src/pages/Auth/Signup.tsx` per `.specify/design/pages/signup.md`
+- [x] T035 Wire `frontend/src/main.tsx` with ApolloProvider, BrowserRouter, and global CSS
 
 **Checkpoint**: User can register, login, see protected route redirect — US1 independently testable
 
@@ -88,17 +88,17 @@ description: "Task list for Financy personal finance application"
 
 ### Implementation for User Story 2
 
-- [ ] T036 [US2] Add Category model and CategoryColor enum to `backend/prisma/schema.prisma`; run `prisma migrate dev --name add_category`
-- [ ] T037 [P] [US2] Create `backend/src/models/category.model.ts` with transactionCount field
-- [ ] T038 [P] [US2] Create `backend/src/dtos/input/category.input.ts` (CreateCategoryInput, UpdateCategoryInput)
-- [ ] T039 [US2] Implement `backend/src/services/category.service.ts` (CRUD, userId filter, unique name per user, block delete if transactions exist)
-- [ ] T040 [US2] Implement `backend/src/resolvers/category.resolver.ts` (listCategories, getCategoryStats, create, update, delete + field resolvers)
-- [ ] T041 [P] [US2] Register CategoryResolver in `backend/src/index.ts`
-- [ ] T042 [P] [US2] Create `frontend/src/lib/graphql/queries/Categories.ts` (listCategories, getCategoryStats)
-- [ ] T043 [P] [US2] Create `frontend/src/lib/graphql/mutations/Category.ts` (create, update, delete)
-- [ ] T044 [P] [US2] Implement `frontend/src/components/CategoryFormDialog.tsx` per `.specify/design/pages/category-form-modal.md` (icon picker, color picker, Zod validation)
-- [ ] T045 [P] [US2] Implement `frontend/src/pages/Categories/components/CategoryCard.tsx` with edit/delete actions
-- [ ] T046 [US2] Implement `frontend/src/pages/Categories/index.tsx` per `.specify/design/pages/categories.md` (stats cards, grid, new category button)
+- [x] T036 [US2] Add Category model and CategoryColor enum to `backend/prisma/schema.prisma`; run `prisma migrate dev --name add_category`
+- [x] T037 [P] [US2] Create `backend/src/models/category.model.ts` with transactionCount field
+- [x] T038 [P] [US2] Create `backend/src/dtos/input/category.input.ts` (CreateCategoryInput, UpdateCategoryInput)
+- [x] T039 [US2] Implement `backend/src/services/category.service.ts` (CRUD, userId filter, unique name per user, block delete if transactions exist)
+- [x] T040 [US2] Implement `backend/src/resolvers/category.resolver.ts` (listCategories, getCategoryStats, create, update, delete + field resolvers)
+- [x] T041 [P] [US2] Register CategoryResolver in `backend/src/index.ts`
+- [x] T042 [P] [US2] Create `frontend/src/lib/graphql/queries/Categories.ts` (listCategories, getCategoryStats)
+- [x] T043 [P] [US2] Create `frontend/src/lib/graphql/mutations/Category.ts` (create, update, delete)
+- [x] T044 [P] [US2] Implement `frontend/src/components/CategoryFormDialog.tsx` per `.specify/design/pages/category-form-modal.md` (icon picker, color picker, Zod validation)
+- [x] T045 [P] [US2] Implement `frontend/src/pages/Categories/components/CategoryCard.tsx` with edit/delete actions
+- [x] T046 [US2] Implement `frontend/src/pages/Categories/index.tsx` per `.specify/design/pages/categories.md` (stats cards, grid, new category button)
 
 **Checkpoint**: Category CRUD fully functional — US2 independently testable
 
@@ -112,18 +112,18 @@ description: "Task list for Financy personal finance application"
 
 ### Implementation for User Story 3 & 5
 
-- [ ] T047 [US3] Add Transaction model and TransactionType enum to `backend/prisma/schema.prisma`; run `prisma migrate dev --name add_transaction`
-- [ ] T048 [P] [US3] Create `backend/src/models/transaction.model.ts` and `backend/src/dtos/input/transaction.input.ts`
-- [ ] T049 [P] [US3] Create `backend/src/dtos/output/transaction.output.ts` (PaginatedTransactions type)
-- [ ] T050 [US3] Implement `backend/src/services/transaction.service.ts` (CRUD, userId ownership, category ownership validation, amount > 0)
-- [ ] T051 [US3] Implement `backend/src/resolvers/transaction.resolver.ts` (listTransactions with search/type/categoryId/month/year/page/limit, getTransaction, create, update, delete)
-- [ ] T052 [P] [US3] Register TransactionResolver in `backend/src/index.ts`
-- [ ] T053 [P] [US3] Create `frontend/src/lib/graphql/queries/Transactions.ts` (listTransactions, getTransaction)
-- [ ] T054 [P] [US3] Create `frontend/src/lib/graphql/mutations/Transaction.ts` (create, update, delete)
-- [ ] T055 [P] [US3] Implement `frontend/src/components/TransactionFormDialog.tsx` per `.specify/design/pages/transaction-form-modal.md` (expense/income toggle, BRL mask, category select)
-- [ ] T056 [P] [US5] Implement `frontend/src/pages/Transactions/components/TransactionFilters.tsx` (search, type, category, period selects)
-- [ ] T057 [P] [US5] Implement `frontend/src/pages/Transactions/components/TransactionTable.tsx` and `TransactionRow.tsx`
-- [ ] T058 [US5] Implement `frontend/src/pages/Transactions/index.tsx` per `.specify/design/pages/transactions.md` (table, pagination, new transaction button)
+- [x] T047 [US3] Add Transaction model and TransactionType enum to `backend/prisma/schema.prisma`; run `prisma migrate dev --name add_transaction`
+- [x] T048 [P] [US3] Create `backend/src/models/transaction.model.ts` and `backend/src/dtos/input/transaction.input.ts`
+- [x] T049 [P] [US3] Create `backend/src/dtos/output/transaction.output.ts` (PaginatedTransactions type)
+- [x] T050 [US3] Implement `backend/src/services/transaction.service.ts` (CRUD, userId ownership, category ownership validation, amount > 0)
+- [x] T051 [US3] Implement `backend/src/resolvers/transaction.resolver.ts` (listTransactions with search/type/categoryId/month/year/page/limit, getTransaction, create, update, delete)
+- [x] T052 [P] [US3] Register TransactionResolver in `backend/src/index.ts`
+- [x] T053 [P] [US3] Create `frontend/src/lib/graphql/queries/Transactions.ts` (listTransactions, getTransaction)
+- [x] T054 [P] [US3] Create `frontend/src/lib/graphql/mutations/Transaction.ts` (create, update, delete)
+- [x] T055 [P] [US3] Implement `frontend/src/components/TransactionFormDialog.tsx` per `.specify/design/pages/transaction-form-modal.md` (expense/income toggle, BRL mask, category select)
+- [x] T056 [P] [US5] Implement `frontend/src/pages/Transactions/components/TransactionFilters.tsx` (search, type, category, period selects)
+- [x] T057 [P] [US5] Implement `frontend/src/pages/Transactions/components/TransactionTable.tsx` and `TransactionRow.tsx`
+- [x] T058 [US5] Implement `frontend/src/pages/Transactions/index.tsx` per `.specify/design/pages/transactions.md` (table, pagination, new transaction button)
 
 **Checkpoint**: Transaction CRUD + filters + pagination — US3 and US5 independently testable
 
@@ -137,14 +137,14 @@ description: "Task list for Financy personal finance application"
 
 ### Implementation for User Story 4
 
-- [ ] T059 [US4] Create `backend/src/dtos/output/dashboard.output.ts` (DashboardSummary, CategoryBreakdownItem)
-- [ ] T060 [US4] Implement `backend/src/services/dashboard.service.ts` (monthlyIncome, monthlyExpenses, balance, recentTransactions limit 5, categoryBreakdown limit 5)
-- [ ] T061 [US4] Implement `backend/src/resolvers/dashboard.resolver.ts` (getDashboardSummary query)
-- [ ] T062 [P] [US4] Register DashboardResolver in `backend/src/index.ts`
-- [ ] T063 [P] [US4] Create `frontend/src/lib/graphql/queries/Dashboard.ts` (getDashboardSummary)
-- [ ] T064 [P] [US4] Implement `frontend/src/components/SummaryCard.tsx` reusable component
-- [ ] T065 [P] [US4] Implement `frontend/src/components/TransactionListItem.tsx` and `CategorySummaryItem.tsx`
-- [ ] T066 [US4] Implement `frontend/src/pages/Dashboard/index.tsx` per `.specify/design/pages/dashboard.md` (3 summary cards, recent list, category sidebar, new transaction trigger)
+- [x] T059 [US4] Create `backend/src/dtos/output/dashboard.output.ts` (DashboardSummary, CategoryBreakdownItem)
+- [x] T060 [US4] Implement `backend/src/services/dashboard.service.ts` (monthlyIncome, monthlyExpenses, balance, recentTransactions limit 5, categoryBreakdown limit 5)
+- [x] T061 [US4] Implement `backend/src/resolvers/dashboard.resolver.ts` (getDashboardSummary query)
+- [x] T062 [P] [US4] Register DashboardResolver in `backend/src/index.ts`
+- [x] T063 [P] [US4] Create `frontend/src/lib/graphql/queries/Dashboard.ts` (getDashboardSummary)
+- [x] T064 [P] [US4] Implement `frontend/src/components/SummaryCard.tsx` reusable component
+- [x] T065 [P] [US4] Implement `frontend/src/components/TransactionListItem.tsx` and `CategorySummaryItem.tsx`
+- [x] T066 [US4] Implement `frontend/src/pages/Dashboard/index.tsx` per `.specify/design/pages/dashboard.md` (3 summary cards, recent list, category sidebar, new transaction trigger)
 
 **Checkpoint**: Dashboard aggregates match transaction data — US4 independently testable
 
@@ -158,13 +158,13 @@ description: "Task list for Financy personal finance application"
 
 ### Implementation for User Story 6
 
-- [ ] T067 [P] [US6] Create `backend/src/dtos/input/user.input.ts` (UpdateProfileInput)
-- [ ] T068 [US6] Implement `backend/src/services/user.service.ts` (updateProfile for authenticated user)
-- [ ] T069 [US6] Implement `backend/src/resolvers/user.resolver.ts` (getProfile, updateProfile with IsAuth)
-- [ ] T070 [P] [US6] Register UserResolver in `backend/src/index.ts`
-- [ ] T071 [P] [US6] Create `frontend/src/lib/graphql/queries/Profile.ts` and `frontend/src/lib/graphql/mutations/Profile.ts`
-- [ ] T072 [US6] Implement `frontend/src/pages/Profile/index.tsx` per `.specify/design/pages/profile.md` (avatar, readonly email, save name, sign out)
-- [ ] T073 [US6] Wire avatar click in `frontend/src/components/Header.tsx` to navigate `/profile`
+- [x] T067 [P] [US6] Create `backend/src/dtos/input/user.input.ts` (UpdateProfileInput)
+- [x] T068 [US6] Implement `backend/src/services/user.service.ts` (updateProfile for authenticated user)
+- [x] T069 [US6] Implement `backend/src/resolvers/user.resolver.ts` (getProfile, updateProfile with IsAuth)
+- [x] T070 [P] [US6] Register UserResolver in `backend/src/index.ts`
+- [x] T071 [P] [US6] Create `frontend/src/lib/graphql/queries/Profile.ts` and `frontend/src/lib/graphql/mutations/Profile.ts`
+- [x] T072 [US6] Implement `frontend/src/pages/Profile/index.tsx` per `.specify/design/pages/profile.md` (avatar, readonly email, save name, sign out)
+- [x] T073 [US6] Wire avatar click in `frontend/src/components/Header.tsx` to navigate `/profile`
 
 **Checkpoint**: Profile update and logout work — US6 independently testable
 
@@ -174,13 +174,13 @@ description: "Task list for Financy personal finance application"
 
 **Purpose**: Seed data, empty states, feedback, responsive layout, validation guide
 
-- [ ] T074 [P] Implement `backend/prisma/seed.ts` with demo user, categories, and sample transactions
-- [ ] T075 [P] Add empty states to `frontend/src/pages/Dashboard/index.tsx`, `Transactions/index.tsx`, `Categories/index.tsx`
-- [ ] T076 [P] Add toast notifications (sonner) for success/error feedback across forms
-- [ ] T077 [P] Add responsive breakpoints to Dashboard, Transactions, Categories grids per design docs
-- [ ] T078 Verify all pages match Figma specs in `.specify/design/pages/` (visual review)
-- [ ] T079 Run validation scenarios from `specs/001-financy-app/quickstart.md` end-to-end
-- [ ] T080 Update root `README.md` with setup instructions for backend and frontend
+- [x] T074 [P] Implement `backend/prisma/seed.ts` with demo user, categories, and sample transactions
+- [x] T075 [P] Add empty states to `frontend/src/pages/Dashboard/index.tsx`, `Transactions/index.tsx`, `Categories/index.tsx`
+- [x] T076 [P] Add toast notifications (sonner) for success/error feedback across forms
+- [x] T077 [P] Add responsive breakpoints to Dashboard, Transactions, Categories grids per design docs
+- [x] T078 Verify all pages match Figma specs in `.specify/design/pages/` (visual review)
+- [x] T079 Run validation scenarios from `specs/001-financy-app/quickstart.md` end-to-end
+- [x] T080 Update root `README.md` with setup instructions for backend and frontend
 
 ---
 
