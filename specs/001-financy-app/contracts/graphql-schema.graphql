@@ -1,0 +1,197 @@
+# Financy GraphQL API Contract
+
+**Version**: 1.0.0 (draft)
+**Endpoint**: `POST /graphql`
+**Auth**: `Authorization: Bearer <token>` (except `login`, `register`)
+
+> This contract defines the target API surface. Implementation uses Type-GraphQL code-first;
+> `backend/schema.graphql` is the generated source of truth after build.
+
+---
+
+## Enums
+
+```graphql
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+enum CategoryColor {
+  green
+  blue
+  purple
+  pink
+  red
+  orange
+  yellow
+}
+```
+
+---
+
+## Types
+
+```graphql
+type UserModel {
+  id: ID!
+  name: String!
+  email: String!
+  createdAt: DateTimeISO!
+  updatedAt: DateTimeISO!
+}
+
+type CategoryModel {
+  id: ID!
+  name: String!
+  description: String
+  icon: String!
+  color: CategoryColor!
+  transactionCount: Int
+  createdAt: DateTimeISO!
+  updatedAt: DateTimeISO!
+}
+
+type TransactionModel {
+  id: ID!
+  title: String!
+  amount: Float!
+  type: TransactionType!
+  date: DateTimeISO!
+  categoryId: String!
+  category: CategoryModel
+  createdAt: DateTimeISO!
+  updatedAt: DateTimeISO!
+}
+
+type PaginatedTransactions {
+  items: [TransactionModel!]!
+  total: Int!
+  page: Int!
+  limit: Int!
+}
+
+type CategoryBreakdownItem {
+  category: CategoryModel!
+  itemCount: Int!
+  totalAmount: Float!
+}
+
+type DashboardSummary {
+  monthlyIncome: Float!
+  monthlyExpenses: Float!
+  balance: Float!
+  recentTransactions: [TransactionModel!]!
+  categoryBreakdown: [CategoryBreakdownItem!]!
+}
+
+type CategoryStats {
+  totalCategories: Int!
+  totalTransactions: Int!
+  mostUsedCategory: CategoryModel
+}
+
+type AuthPayload {
+  token: String!
+  refreshToken: String!
+  user: UserModel!
+}
+```
+
+---
+
+## Inputs
+
+```graphql
+input RegisterInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input UpdateProfileInput {
+  name: String!
+}
+
+input CreateCategoryInput {
+  name: String!
+  description: String
+  icon: String!
+  color: CategoryColor!
+}
+
+input UpdateCategoryInput {
+  name: String
+  description: String
+  icon: String
+  color: CategoryColor
+}
+
+input CreateTransactionInput {
+  title: String!
+  amount: Float!
+  type: TransactionType!
+  date: DateTimeISO!
+  categoryId: String!
+}
+
+input UpdateTransactionInput {
+  title: String
+  amount: Float
+  type: TransactionType
+  date: DateTimeISO
+  categoryId: String
+}
+```
+
+---
+
+## Queries
+
+| Query | Auth | Description |
+|-------|------|-------------|
+| `getDashboardSummary(month: Int, year: Int): DashboardSummary!` | Yes | Dashboard cards + recent + breakdown |
+| `listCategories: [CategoryModel!]!` | Yes | All user categories |
+| `getCategoryStats: CategoryStats!` | Yes | Categories page summary cards |
+| `listTransactions(search, type, categoryId, month, year, page, limit): PaginatedTransactions!` | Yes | Filtered paginated list |
+| `getTransaction(id: String!): TransactionModel!` | Yes | Single transaction (edit modal) |
+| `getProfile: UserModel!` | Yes | Current user profile |
+
+---
+
+## Mutations
+
+| Mutation | Auth | Description |
+|----------|------|-------------|
+| `register(data: RegisterInput!): AuthPayload!` | No | Create account + return tokens |
+| `login(data: LoginInput!): AuthPayload!` | No | Authenticate + return tokens |
+| `updateProfile(data: UpdateProfileInput!): UserModel!` | Yes | Update display name |
+| `createCategory(data: CreateCategoryInput!): CategoryModel!` | Yes | Create category |
+| `updateCategory(id: String!, data: UpdateCategoryInput!): CategoryModel!` | Yes | Update category |
+| `deleteCategory(id: String!): Boolean!` | Yes | Delete if no transactions |
+| `createTransaction(data: CreateTransactionInput!): TransactionModel!` | Yes | Create transaction |
+| `updateTransaction(id: String!, data: UpdateTransactionInput!): TransactionModel!` | Yes | Update transaction |
+| `deleteTransaction(id: String!): Boolean!` | Yes | Delete transaction |
+
+---
+
+## Error Conventions
+
+- Unauthenticated: `Usuário não autenticado!`
+- Not found / wrong owner: `Recurso não encontrado` or domain-specific PT message
+- Validation: descriptive Portuguese message in GraphQL error `message`
+- Duplicate email: `E-mail já cadastrado!`
+- Category in use: `Categoria em uso por transações`
+
+---
+
+## Ownership Rules
+
+All `list*`, `get*`, `update*`, `delete*` operations on Category and Transaction MUST scope
+to `context.user` (authenticated user ID). Mutations MUST set `userId` from `@GqlUser()`,
+never from client input.
